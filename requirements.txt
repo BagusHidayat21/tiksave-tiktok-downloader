@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+curl_cffi
+pycryptodome
+yt-dlp
+imageio-ffmpeg

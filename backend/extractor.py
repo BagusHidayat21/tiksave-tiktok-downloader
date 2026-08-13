@@ -10,7 +10,12 @@ from Crypto.Cipher import AES
 from Crypto.Hash import SHA256
 import base64
 
-FFMPEG_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "venv", "bin", "ffmpeg")
+import imageio_ffmpeg
+
+try:
+    FFMPEG_PATH = imageio_ffmpeg.get_ffmpeg_exe()
+except Exception:
+    FFMPEG_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "venv", "bin", "ffmpeg")
 
 def solve_snaptik_token(token_id: str, token_p: str) -> str:
     key_str = "sn4pt1k_v3r1fy2026:" + token_id

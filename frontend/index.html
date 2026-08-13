@@ -338,7 +338,7 @@
   </footer>
 
   <script>
-    const API = 'http://localhost:8000';
+    const API = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:8000' : '';
 
     const urlInput = document.getElementById('url-input');
     const pasteBtn = document.getElementById('paste-btn');
