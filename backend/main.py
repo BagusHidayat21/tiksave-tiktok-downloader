@@ -44,12 +44,13 @@ async def get_info(url: str):
         raise HTTPException(status_code=400, detail=str(e))
 
 
+import tempfile
+
 @app.get("/download")
 async def download(url: str, background_tasks: BackgroundTasks):
     try:
         filename = f"{uuid.uuid4()}.mp4"
-        output_path = f"downloads/{filename}"
-        os.makedirs("downloads", exist_ok=True)
+        output_path = os.path.join(tempfile.gettempdir(), filename)
 
         metadata = get_tiktok_metadata(url)
         download_url = metadata.get("download_url")
