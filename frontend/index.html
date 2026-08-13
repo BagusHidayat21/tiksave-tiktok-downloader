@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TikSave | Download TikTok Videos Free</title>
+  <meta name="description" content="Download TikTok videos without watermark in best quality." />
+  <link rel="icon" type="image/svg+xml" href="icon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Space Grotesk', 'sans-serif'] },
+          colors: {
+            surface: '#111113', panel: '#18181B', line: '#27272A',
+            muted: '#52525B', sub: '#71717A', red: { tk: '#FE2C55' },
+          },
+          keyframes: {
+            bar: { '0%,100%': { transform: 'scaleY(.3)' }, '50%': { transform: 'scaleY(1)' } },
+            up: { from: { opacity: '0', transform: 'translateY(12px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+            spin: { to: { transform: 'rotate(360deg)' } },
+          },
+          animation: {
+            bar1: 'bar .9s ease-in-out infinite',
+            bar2: 'bar .9s ease-in-out .15s infinite',
+            bar3: 'bar .9s ease-in-out .3s infinite',
+            bar4: 'bar .9s ease-in-out .45s infinite',
+            up: 'up .35s ease forwards',
+            spin: 'spin .7s linear infinite',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0C0C0E;
+    }
+
+    #url-input:focus {
+      outline: none;
+      border-color: #FE2C55;
+      box-shadow: 0 0 0 3px rgba(254, 44, 85, .12);
+    }
+
+    .seg-btn {
+      transition: background .2s, color .2s;
+    }
+
+    .seg-btn.active {
+      background: #FE2C55;
+      color: #fff;
+    }
+
+    .action-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0);
+      border-radius: inherit;
+      transition: background .15s;
+    }
+
+    .action-btn:hover::after {
+      background: rgba(255, 255, 255, .07);
+    }
+
+    .action-btn:active::after {
+      background: rgba(0, 0, 0, .1);
+    }
+
+    .bar {
+      width: 3px;
+      border-radius: 99px;
+      background: #FE2C55;
+      transform-origin: bottom;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+
+  </style>
+</head>
+
+<body class="min-h-screen font-sans text-white flex flex-col">
+
+
+
+  <!-- ── Header ── -->
+  <header
+    class="sticky top-0 z-50 bg-[#0C0C0E]/80 backdrop-blur-md flex items-center justify-between px-6 py-4 border-b border-line/60">
+    <div class="flex items-center gap-2.5">
+      <svg width="26" height="26" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF3B5C"/>
+            <stop offset="100%" stop-color="#BE1039"/>
+          </linearGradient>
+        </defs>
+        <rect width="64" height="64" rx="14" fill="url(#hg)"/>
+        <g stroke="white" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+          <line x1="32" y1="12" x2="32" y2="35"/>
+          <polyline points="20,27 32,40 44,27"/>
+          <line x1="18" y1="51" x2="46" y2="51"/>
+        </g>
+      </svg>
+      <span class="relative font-bold text-[17px] tracking-tight">
+        <span class="text-white">Tik</span><span class="text-red-tk">Save</span>
+      </span>
+      <span
+        class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-panel border border-line text-sub uppercase tracking-wider">Beta</span>
+    </div>
+    <nav class="hidden sm:flex items-center gap-5 text-[13px] text-sub">
+      <a href="#how-it-works" class="hover:text-white transition-colors">How it works</a>
+      <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+    </nav>
+  </header>
+
+
+
+  <!-- ── Main ── -->
+  <main class="relative z-10 flex-1 flex items-center justify-center px-4 py-8 sm:py-16">
+    <div class="w-full max-w-[520px]">
+
+      <p class="text-[12px] font-semibold text-red-tk tracking-[.12em] uppercase mb-4">Free · No Watermark</p>
+      <h1 class="text-[38px] sm:text-[46px] font-bold leading-[1.1] tracking-tight mb-3">
+        Download TikTok<br />videos in seconds.
+      </h1>
+      <p class="text-sub text-[14px] mb-10 leading-relaxed">Paste any TikTok link.<br />Download in best quality.
+      </p>
+
+      <!-- URL Input -->
+      <div class="relative mb-6">
+        <input id="url-input" type="url" autocomplete="off" spellcheck="false"
+          placeholder="https://www.tiktok.com/@user/video/..."
+          class="w-full bg-panel border border-line rounded-xl px-4 pr-12 py-3.5 text-[14px] text-white placeholder-muted transition-all duration-200" />
+        <button id="paste-btn" type="button" title="Paste"
+          class="absolute right-3 top-1/2 -translate-y-1/2 p-1.5 rounded-lg text-muted hover:text-white hover:bg-line transition-all duration-150">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+            <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Download Button -->
+      <button type="button" id="download-btn"
+        class="action-btn relative w-full py-3.5 rounded-xl font-semibold text-[14px] tracking-wide bg-red-tk text-white transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed overflow-hidden">
+        <span id="dl-label" class="relative z-10 flex items-center justify-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Download Video
+        </span>
+      </button>
+
+      <!-- Preview Card (muncul setelah fetch info) -->
+      <div id="preview-card" class="hidden mt-4 animate-up">
+        <div class="bg-panel border border-line rounded-xl overflow-hidden">
+          <div class="relative bg-zinc-900 overflow-hidden" style="height:180px">
+            <img id="preview-thumb" src="" alt="" class="w-full h-full object-cover" referrerpolicy="no-referrer"
+              onerror="this.style.display='none';document.getElementById('thumb-ph').classList.remove('hidden')" />
+            <div id="thumb-ph" class="hidden absolute inset-0 flex items-center justify-center">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#52525B" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="2" ry="2" />
+                <polygon points="10 8 16 12 10 16 10 8" />
+              </svg>
+            </div>
+            <span id="preview-dur"
+              class="hidden absolute bottom-2 right-2 bg-black/70 text-white text-[11px] px-1.5 py-0.5 rounded font-mono"></span>
+          </div>
+          <div class="px-4 py-3">
+            <p id="preview-title" class="text-[13px] font-semibold text-white leading-snug line-clamp-2"></p>
+            <p id="preview-uploader" class="text-[12px] text-muted mt-1"></p>
+          </div>
+        </div>
+        <button type="button" id="confirm-dl-btn"
+          class="action-btn relative mt-3 w-full py-3.5 rounded-xl font-semibold text-[14px] tracking-wide bg-red-tk text-white transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed overflow-hidden">
+          <span id="confirm-dl-label" class="relative z-10 flex items-center justify-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Download
+          </span>
+        </button>
+      </div>
+
+      <!-- Loading -->
+      <div id="state-loading" class="hidden mt-4 animate-up">
+        <div class="flex items-center gap-3 bg-panel border border-line rounded-xl px-4 py-3.5">
+          <div class="flex items-end gap-[3px] h-5 shrink-0">
+            <div class="bar h-5 animate-bar1"></div>
+            <div class="bar h-5 animate-bar2"></div>
+            <div class="bar h-5 animate-bar3"></div>
+            <div class="bar h-5 animate-bar4"></div>
+          </div>
+          <div>
+            <p id="loading-label" class="text-[13px] font-semibold text-white">Processing…</p>
+            <p class="text-[11px] text-muted mt-0.5">This may take a few seconds</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div id="state-error" class="hidden mt-4 animate-up">
+        <div class="flex items-start gap-3 bg-panel border border-red-500/30 rounded-xl px-4 py-3.5">
+          <svg class="w-4 h-4 text-red-400 mt-0.5 shrink-0" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          <div>
+            <p class="text-[13px] font-semibold text-red-400">Gagal</p>
+            <p id="error-text" class="text-[12px] text-muted mt-0.5"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success — auto reset setelah download -->
+      <div id="state-success" class="hidden mt-4 animate-up">
+        <div class="flex items-start gap-3 bg-panel border border-emerald-500/30 rounded-xl px-4 py-3.5 mb-3">
+          <div class="w-7 h-7 rounded-full bg-emerald-500/15 flex items-center justify-center shrink-0 mt-0.5">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" stroke-width="2.5"
+              viewBox="0 0 24 24">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+          </div>
+          <div class="min-w-0">
+            <p class="text-[13px] font-semibold text-emerald-400">Download berhasil!</p>
+            <p id="success-filename" class="text-[12px] text-muted mt-0.5 truncate"></p>
+            <p class="text-[11px] text-muted mt-1">Cek folder <span class="text-white font-medium">Downloads</span> di
+              PC kamu.</p>
+          </div>
+        </div>
+
+        <div class="bg-panel/50 border border-line rounded-xl px-4 py-4 text-center">
+          <p class="text-[13px] text-white font-semibold mb-3">Mau download video lain?</p>
+          <div class="flex items-center gap-2">
+            <button type="button" id="back-btn"
+              class="flex-1 py-2.5 rounded-lg font-semibold text-[13px] bg-white text-black hover:bg-zinc-200 transition-colors">
+              Ya, Download Lagi
+            </button>
+            <button type="button" id="stay-btn"
+              class="flex-1 py-2.5 rounded-lg font-semibold text-[13px] border border-line text-white hover:bg-line transition-colors">
+              Nanti Saja
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+
+
+  <!-- Steps -->
+  <section id="how-it-works" class="relative z-10 border-t border-line/60 px-6 py-10">
+    <div class="max-w-[520px] mx-auto grid grid-cols-3 gap-6 text-center">
+      <div>
+        <div
+          class="w-8 h-8 rounded-lg bg-panel border border-line flex items-center justify-center mx-auto mb-3 text-[13px] font-bold text-sub">
+          1</div>
+        <p class="text-[13px] font-semibold text-white mb-1">Copy Link</p>
+        <p class="text-[12px] text-muted leading-relaxed">Open TikTok, tap Share &rarr; Copy Link</p>
+      </div>
+      <div>
+        <div
+          class="w-8 h-8 rounded-lg bg-panel border border-line flex items-center justify-center mx-auto mb-3 text-[13px] font-bold text-sub">
+          2</div>
+        <p class="text-[13px] font-semibold text-white mb-1">Paste URL</p>
+        <p class="text-[12px] text-muted leading-relaxed">Tempel link di kolom atas</p>
+      </div>
+      <div>
+        <div
+          class="w-8 h-8 rounded-lg bg-panel border border-line flex items-center justify-center mx-auto mb-3 text-[13px] font-bold text-sub">
+          3</div>
+        <p class="text-[13px] font-semibold text-white mb-1">Download</p>
+        <p class="text-[12px] text-muted leading-relaxed">Video tersimpan tanpa watermark</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="relative z-10 border-t border-line/60 px-6 py-16">
+    <div class="max-w-[728px] mx-auto">
+      <h2 class="text-[26px] font-bold text-center mb-10 tracking-tight">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <div class="bg-panel border border-line rounded-xl p-5">
+          <h3 class="text-[15px] font-semibold text-white mb-2">Apakah TikSave gratis?</h3>
+          <p class="text-[13px] text-sub leading-relaxed">Ya, TikSave 100% gratis. Tidak ada biaya tersembunyi dan tidak
+            perlu mendaftar akun.</p>
+        </div>
+        <div class="bg-panel border border-line rounded-xl p-5">
+          <h3 class="text-[15px] font-semibold text-white mb-2">Di mana hasil download disimpan?</h3>
+          <p class="text-[13px] text-sub leading-relaxed">Video otomatis masuk ke folder <strong>Downloads</strong> di
+            komputer atau galeri di HP kamu.</p>
+        </div>
+        <div class="bg-panel border border-line rounded-xl p-5">
+          <h3 class="text-[15px] font-semibold text-white mb-2">Apakah ada watermark di videonya?</h3>
+          <p class="text-[13px] text-sub leading-relaxed">Tidak. Semua video yang didownload lewat TikSave bersih tanpa
+            watermark TikTok.</p>
+        </div>
+        <div class="bg-panel border border-line rounded-xl p-5">
+          <h3 class="text-[15px] font-semibold text-white mb-2">Kenapa videonya gagal didownload?</h3>
+          <p class="text-[13px] text-sub leading-relaxed">Biasanya karena video di-set private, dihapus pemiliknya, atau
+            server sedang sibuk. Pastikan URL benar dan videonya publik.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <footer class="relative z-10 border-t border-line/60 px-6 py-5 flex items-center justify-between">
+    <span class="text-[12px] text-muted">&#169; 2025 TikSave</span>
+    <span class="text-[12px] text-muted">For personal use only</span>
+  </footer>
+
+  <script>
+    const API = 'http://localhost:8000';
+
+    const urlInput = document.getElementById('url-input');
+    const pasteBtn = document.getElementById('paste-btn');
+    const downloadBtn = document.getElementById('download-btn');
+    const dlLabel = document.getElementById('dl-label');
+    const previewCard = document.getElementById('preview-card');
+    const previewThumb = document.getElementById('preview-thumb');
+    const thumbPh = document.getElementById('thumb-ph');
+    const previewTitle = document.getElementById('preview-title');
+    const previewUploader = document.getElementById('preview-uploader');
+    const previewDur = document.getElementById('preview-dur');
+    const confirmDlBtn = document.getElementById('confirm-dl-btn');
+    const confirmDlLabel = document.getElementById('confirm-dl-label');
+    const loadingLabel = document.getElementById('loading-label');
+    const errorText = document.getElementById('error-text');
+    const stLoading = document.getElementById('state-loading');
+    const stError = document.getElementById('state-error');
+    const stSuccess = document.getElementById('state-success');
+    const backBtn = document.getElementById('back-btn');
+    const stayBtn = document.getElementById('stay-btn');
+
+    let currentUrl = '';
+
+    const DL_ICON = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
+    const SPIN_ICON = `<svg class="animate-spin" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>`;
+
+    pasteBtn.addEventListener('click', async () => {
+      try { urlInput.value = await navigator.clipboard.readText(); }
+      catch { urlInput.focus(); }
+      hideStatus();
+    });
+
+    urlInput.addEventListener('input', hideStatus);
+    urlInput.addEventListener('keydown', e => { if (e.key === 'Enter') downloadBtn.click(); });
+
+    function hideStatus() {
+      [stLoading, stError, stSuccess].forEach(el => el.classList.add('hidden'));
+    }
+
+    function showError(msg) {
+      errorText.textContent = msg;
+      stError.classList.remove('hidden');
+    }
+
+    function formatDur(secs) {
+      if (!secs) return '';
+      return Math.floor(secs / 60) + ':' + String(Math.round(secs % 60)).padStart(2, '0');
+    }
+
+    // Step 1: fetch info dulu, tampilkan preview
+    downloadBtn.addEventListener('click', async () => {
+      const url = urlInput.value.trim();
+      if (!url) { showError('Paste a TikTok URL first.'); return; }
+      if (!url.includes('tiktok.com')) { showError("That doesn't look like a TikTok URL."); return; }
+
+      hideStatus();
+      previewCard.classList.add('hidden');
+      downloadBtn.disabled = true;
+      dlLabel.innerHTML = SPIN_ICON + ' Fetching preview…';
+      stLoading.classList.remove('hidden');
+      loadingLabel.textContent = 'Mengambil info video…';
+
+      try {
+        const res = await fetch(`${API}/info?url=${encodeURIComponent(url)}`);
+        stLoading.classList.add('hidden');
+        if (!res.ok) {
+          const d = await res.json().catch(() => ({}));
+          throw new Error(d.detail || 'Server error ' + res.status);
+        }
+        renderPreview(await res.json(), url);
+      } catch (e) {
+        stLoading.classList.add('hidden');
+        downloadBtn.disabled = false;
+        dlLabel.innerHTML = DL_ICON + ' Download Video';
+        showError(e.message || 'Gagal mengambil preview.');
+      }
+    });
+
+    function renderPreview(data, url) {
+      currentUrl = url;
+
+      thumbPh.classList.add('hidden');
+      if (data.thumbnail) {
+        previewThumb.style.display = 'block';
+        previewThumb.src = `${API}/proxy-image?url=${encodeURIComponent(data.thumbnail)}`;
+      } else {
+        previewThumb.style.display = 'none';
+        thumbPh.classList.remove('hidden');
+      }
+
+      const dur = formatDur(data.duration);
+      previewDur.textContent = dur;
+      previewDur.classList.toggle('hidden', !dur);
+
+      previewTitle.textContent = data.title || 'TikTok Video';
+      previewUploader.textContent = data.uploader ? '@' + data.uploader : '';
+
+      // Kunci input, sembunyikan paste button & tombol download pertama
+      urlInput.setAttribute('readonly', '');
+      pasteBtn.classList.add('hidden');
+      downloadBtn.classList.add('hidden');
+
+      confirmDlLabel.innerHTML = DL_ICON + ' Download';
+      confirmDlBtn.disabled = false;
+      previewCard.classList.remove('hidden');
+    }
+
+    // Step 2: download file
+    confirmDlBtn.addEventListener('click', async () => {
+      hideStatus();
+      confirmDlBtn.disabled = true;
+      confirmDlLabel.innerHTML = SPIN_ICON + ' Downloading…';
+      stLoading.classList.remove('hidden');
+      loadingLabel.textContent = 'Fetching video…';
+
+      try {
+        const res = await fetch(`${API}/download?url=${encodeURIComponent(currentUrl)}`);
+        if (!res.ok) {
+          const d = await res.json().catch(() => ({}));
+          throw new Error(d.detail || 'Server error ' + res.status);
+        }
+
+        loadingLabel.textContent = 'Menyimpan file…';
+
+        const disp = res.headers.get('Content-Disposition') || '';
+        let fname = 'video.mp4';
+        const mUtf8 = disp.match(/filename\*=UTF-8''([^;]+)/i);
+        const mPlain = disp.match(/filename="?([^";]+)"?/i);
+        if (mUtf8) fname = decodeURIComponent(mUtf8[1].trim());
+        else if (mPlain) fname = mPlain[1].trim();
+
+        const blob = await res.blob();
+        const blobUrl = URL.createObjectURL(blob);
+        const a = Object.assign(document.createElement('a'), { href: blobUrl, download: fname });
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
+
+        stLoading.classList.add('hidden');
+        document.getElementById('success-filename').textContent = fname;
+        stSuccess.classList.remove('hidden');
+
+        confirmDlLabel.innerHTML = DL_ICON + ' Download';
+        confirmDlBtn.disabled = false;
+
+      } catch (e) {
+        stLoading.classList.add('hidden');
+        confirmDlBtn.disabled = false;
+        confirmDlLabel.innerHTML = DL_ICON + ' Download';
+        showError(e.message || 'Something went wrong, please try again.');
+      }
+    });
+
+    backBtn.addEventListener('click', () => {
+      urlInput.value = '';
+      urlInput.removeAttribute('readonly');
+      pasteBtn.classList.remove('hidden');
+      downloadBtn.classList.remove('hidden');
+      dlLabel.innerHTML = DL_ICON + ' Download Video';
+      downloadBtn.disabled = false;
+      previewCard.classList.add('hidden');
+      currentUrl = '';
+      hideStatus();
+    });
+
+    stayBtn.addEventListener('click', () => stSuccess.classList.add('hidden'));
+  </script>
+</body>
+
+</html>
