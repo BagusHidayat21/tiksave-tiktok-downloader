@@ -1,12 +1,13 @@
+<!-- TikSave frontend interface supporting both TikTok video downloads and interactive photo slider extraction. -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TikSave | Download TikTok Videos Free No Watermark 1080p</title>
-  <meta name="description" content="Download TikTok videos without watermark in original 1080p Full HD quality for free. Fast, safe, and works on all mobile and desktop devices." />
-  <meta name="keywords" content="TikTok Downloader, Download TikTok Video No Watermark, TikSave, Free TikTok Video Saver, TikTok MP4 Download, 1080p TikTok Downloader" />
+  <title>TikSave | Download TikTok Videos & Photo Sliders Free No Watermark</title>
+  <meta name="description" content="Download TikTok videos and photo sliders without watermark in original Full HD quality for free. Fast, safe, and works on all mobile and desktop devices." />
+  <meta name="keywords" content="TikTok Downloader, Download TikTok Video No Watermark, TikTok Slider Downloader, TikTok Photo Carousel, TikSave, Free TikTok Video Saver" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="canonical" href="https://tiksave.bagus-hidayat.my.id/" />
 
@@ -18,17 +19,17 @@
   <!-- Open Graph / Facebook / WhatsApp -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://tiksave.bagus-hidayat.my.id/" />
-  <meta property="og:title" content="TikSave | Download TikTok Videos Free No Watermark 1080p" />
-  <meta property="og:description" content="Download TikTok videos without watermark in original 1080p Full HD quality for free." />
+  <meta property="og:title" content="TikSave | Download TikTok Videos & Photo Sliders Free No Watermark" />
+  <meta property="og:description" content="Download TikTok videos and photo sliders without watermark in original Full HD quality for free." />
   <meta property="og:image" content="https://tiksave.bagus-hidayat.my.id/icon.svg" />
 
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="TikSave | Download TikTok Videos Free No Watermark 1080p" />
-  <meta name="twitter:description" content="Download TikTok videos without watermark in original 1080p Full HD quality for free." />
+  <meta name="twitter:title" content="TikSave | Download TikTok Videos & Photo Sliders Free No Watermark" />
+  <meta name="twitter:description" content="Download TikTok videos and photo sliders without watermark in original Full HD quality for free." />
   <meta name="twitter:image" content="https://tiksave.bagus-hidayat.my.id/icon.svg" />
 
-  <!-- JSON-LD Structured Data (WebApplication & FAQPage) for Google Rich Results -->
+  <!-- JSON-LD Structured Data (WebApplication & FAQPage) -->
   <script type="application/ld+json">
   [
     {
@@ -36,7 +37,7 @@
       "@type": "WebApplication",
       "name": "TikSave",
       "url": "https://tiksave.bagus-hidayat.my.id/",
-      "description": "Download TikTok videos without watermark in original 1080p Full HD quality for free.",
+      "description": "Download TikTok videos and photo sliders without watermark in original Full HD quality for free.",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "offers": {
@@ -59,18 +60,26 @@
         },
         {
           "@type": "Question",
-          "name": "Di mana hasil download disimpan?",
+          "name": "Apakah bisa mendownload slider foto TikTok?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Video otomatis tersimpan ke folder Downloads di komputer atau galeri di HP Anda."
+            "text": "Ya, TikSave otomatis mendeteksi jika postingan adalah photo slide / slider. Anda dapat mengunduh semua foto sekaligus dalam format ZIP atau foto satu per satu tanpa watermark."
           }
         },
         {
           "@type": "Question",
-          "name": "Apakah ada watermark di videonya?",
+          "name": "Di mana hasil download disimpan?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Tidak. Semua video yang didownload lewat TikSave 100% bersih tanpa watermark TikTok dalam kualitas 1080p Full HD."
+            "text": "File otomatis tersimpan ke folder Downloads di komputer atau galeri di HP Anda."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah ada watermark di hasilnya?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tidak. Semua video dan foto yang didownload lewat TikSave 100% bersih tanpa watermark TikTok."
           }
         }
       ]
@@ -118,15 +127,6 @@
       box-shadow: 0 0 0 3px rgba(254, 44, 85, .12);
     }
 
-    .seg-btn {
-      transition: background .2s, color .2s;
-    }
-
-    .seg-btn.active {
-      background: #FE2C55;
-      color: #fff;
-    }
-
     .action-btn::after {
       content: '';
       position: absolute;
@@ -160,17 +160,21 @@
       z-index: 0;
     }
 
-
+    /* Hide scrollbar on thumbnails bar */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 </head>
 
 <body class="min-h-screen font-sans text-white flex flex-col">
 
-
-
   <!-- ── Header ── -->
-  <header
-    class="sticky top-0 z-50 bg-[#0C0C0E]/80 backdrop-blur-md flex items-center justify-between px-6 py-4 border-b border-line/60">
+  <header class="sticky top-0 z-50 bg-[#0C0C0E]/80 backdrop-blur-md flex items-center justify-between px-6 py-4 border-b border-line/60">
     <div class="flex items-center gap-2.5">
       <svg width="26" height="26" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <defs>
@@ -189,8 +193,7 @@
       <span class="relative font-bold text-[17px] tracking-tight">
         <span class="text-white">Tik</span><span class="text-red-tk">Save</span>
       </span>
-      <span
-        class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-panel border border-line text-sub uppercase tracking-wider">Beta</span>
+      <span class="px-1.5 py-0.5 rounded text-[10px] font-semibold bg-panel border border-line text-sub uppercase tracking-wider">Beta</span>
     </div>
     <nav class="hidden sm:flex items-center gap-5 text-[13px] text-sub">
       <a href="#how-it-works" class="hover:text-white transition-colors">How it works</a>
@@ -198,17 +201,15 @@
     </nav>
   </header>
 
-
-
   <!-- ── Main ── -->
   <main class="relative z-10 flex-1 flex items-center justify-center px-4 py-8 sm:py-16">
     <div class="w-full max-w-[520px]">
 
       <p class="text-[12px] font-semibold text-red-tk tracking-[.12em] uppercase mb-4">Free · No Watermark</p>
       <h1 class="text-[38px] sm:text-[46px] font-bold leading-[1.1] tracking-tight mb-3">
-        Download TikTok<br />videos in seconds.
+        Download TikTok<br />videos & photo slides.
       </h1>
-      <p class="text-sub text-[14px] mb-10 leading-relaxed">Paste any TikTok link.<br />Download in best quality.
+      <p class="text-sub text-[14px] mb-10 leading-relaxed">Paste any TikTok video or photo carousel link.<br />Download clean without watermark.
       </p>
 
       <!-- URL Input -->
@@ -226,7 +227,7 @@
         </button>
       </div>
 
-      <!-- Download Button -->
+      <!-- Download Button (First Action) -->
       <button type="button" id="download-btn"
         class="action-btn relative w-full py-3.5 rounded-xl font-semibold text-[14px] tracking-wide bg-red-tk text-white transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed overflow-hidden">
         <span id="dl-label" class="relative z-10 flex items-center justify-center gap-2">
@@ -236,15 +237,15 @@
             <polyline points="7 10 12 15 17 10" />
             <line x1="12" y1="15" x2="12" y2="3" />
           </svg>
-          Download Video
+          Get Download Links
         </span>
       </button>
 
-      <!-- Preview Card (muncul setelah fetch info) -->
+      <!-- Preview Card -->
       <div id="preview-card" class="hidden mt-4 animate-up">
-        <div class="bg-panel border border-line rounded-xl overflow-hidden">
-          <div class="relative bg-zinc-900 overflow-hidden" style="height:180px">
-            <img id="preview-thumb" src="" alt="" class="w-full h-full object-cover" referrerpolicy="no-referrer"
+        <div class="bg-panel border border-line rounded-xl overflow-hidden shadow-2xl">
+          <div class="relative bg-zinc-900 overflow-hidden flex items-center justify-center" style="height:260px">
+            <img id="preview-thumb" src="" alt="" class="w-full h-full object-contain bg-black/40 transition-all duration-200" referrerpolicy="no-referrer"
               onerror="this.style.display='none';document.getElementById('thumb-ph').classList.remove('hidden')" />
             <div id="thumb-ph" class="hidden absolute inset-0 flex items-center justify-center">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#52525B" stroke-width="1.5"
@@ -253,26 +254,103 @@
                 <polygon points="10 8 16 12 10 16 10 8" />
               </svg>
             </div>
+            <!-- Video duration badge -->
             <span id="preview-dur"
               class="hidden absolute bottom-2 right-2 bg-black/70 text-white text-[11px] px-1.5 py-0.5 rounded font-mono"></span>
+
+            <!-- Slider badges & navigation -->
+            <div id="slider-overlay" class="hidden">
+              <span id="slider-badge" class="absolute top-2.5 left-2.5 bg-red-tk text-white text-[11px] font-semibold px-2.5 py-0.5 rounded-full shadow flex items-center gap-1.5">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                <span id="slider-badge-text">Photo Slider</span>
+              </span>
+              <span id="slider-counter" class="absolute top-2.5 right-2.5 bg-black/75 backdrop-blur-sm text-white text-[11px] font-mono px-2.5 py-0.5 rounded-full border border-white/10">1 / 1</span>
+
+              <button type="button" id="slider-prev-btn" aria-label="Previous Slide" class="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-all border border-white/10 shadow-lg">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <button type="button" id="slider-next-btn" aria-label="Next Slide" class="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 hover:bg-black/90 text-white flex items-center justify-center transition-all border border-white/10 shadow-lg">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
           </div>
+
+          <!-- Slider thumbnail row -->
+          <div id="slider-thumbs-container" class="hidden bg-zinc-950/80 border-t border-line/60 p-2 overflow-x-auto no-scrollbar">
+            <div id="slider-thumbs" class="flex items-center gap-2 min-w-max"></div>
+          </div>
+
           <div class="px-4 py-3">
             <p id="preview-title" class="text-[13px] font-semibold text-white leading-snug line-clamp-2"></p>
             <p id="preview-uploader" class="text-[12px] text-muted mt-1"></p>
           </div>
         </div>
-        <button type="button" id="confirm-dl-btn"
-          class="action-btn relative mt-3 w-full py-3.5 rounded-xl font-semibold text-[14px] tracking-wide bg-red-tk text-white transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed overflow-hidden">
-          <span id="confirm-dl-label" class="relative z-10 flex items-center justify-center gap-2">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
+
+        <!-- Video Action Area -->
+        <div id="video-actions" class="mt-3.5">
+          <button type="button" id="confirm-dl-btn"
+            class="action-btn relative w-full py-3.5 px-4 rounded-xl font-semibold text-[14px] tracking-wide bg-red-tk text-white transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed overflow-hidden shadow-lg shadow-red-tk/25 flex items-center justify-between active:scale-[0.99]">
+            <span id="confirm-dl-label" class="relative z-10 flex items-center gap-2.5">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span>Download Video</span>
+            </span>
+            <span class="relative z-10 text-[11px] font-bold bg-black/30 backdrop-blur-xs px-2.5 py-1 rounded-lg text-white/90 uppercase tracking-wider border border-white/10">MP4 · HD</span>
+          </button>
+        </div>
+
+        <!-- Slider Action Area (Safe and deliberate - no auto video download) -->
+        <div id="slider-actions" class="hidden mt-3.5 space-y-2.5">
+          <!-- Primary ZIP Button -->
+          <button type="button" id="dl-zip-btn"
+            class="action-btn relative w-full py-3.5 px-4 rounded-xl font-semibold text-[14px] tracking-wide bg-red-tk text-white transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed overflow-hidden shadow-lg shadow-red-tk/25 flex items-center justify-between active:scale-[0.99]">
+            <span id="dl-zip-label" class="relative z-10 flex items-center gap-2.5">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+              <span>Download Semua Foto</span>
+            </span>
+            <span class="relative z-10 text-[11px] font-bold bg-black/30 backdrop-blur-xs px-2.5 py-1 rounded-lg text-white/90 uppercase tracking-wider border border-white/10">ZIP</span>
+          </button>
+
+          <!-- Secondary Actions Row -->
+          <div id="slider-sub-actions" class="flex gap-2">
+            <button type="button" id="dl-current-slide-btn"
+              class="flex-1 py-3 px-3.5 rounded-xl font-medium text-[13px] bg-panel border border-line hover:border-zinc-500 hover:bg-line/60 text-white transition-all flex items-center justify-center gap-2 disabled:opacity-40 shadow-sm active:scale-[0.98]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+              <span id="dl-current-text">Download Foto Ini</span>
+            </button>
+
+            <button type="button" id="dl-audio-btn"
+              class="hidden flex-1 py-3 px-3.5 rounded-xl font-medium text-[13px] bg-panel border border-line hover:border-zinc-500 hover:bg-line/60 text-white transition-all flex items-center justify-center gap-2 disabled:opacity-40 shadow-sm active:scale-[0.98]">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400">
+                <path d="M9 18V5l12-2v13"/>
+                <circle cx="6" cy="18" r="3"/>
+                <circle cx="18" cy="16" r="3"/>
+              </svg>
+              <span>Download Audio</span>
+            </button>
+          </div>
+
+          <!-- Tertiary Video Download (Slideshow Video) -->
+          <button type="button" id="dl-slideshow-video-btn"
+            class="hidden w-full py-2.5 px-3 rounded-xl font-medium text-[12px] text-zinc-400 hover:text-white bg-panel/60 border border-line/60 hover:bg-line/60 hover:border-line transition-all flex items-center justify-center gap-2 disabled:opacity-40">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="23 7 16 12 23 17 23 7"/>
+              <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
             </svg>
-            Download
-          </span>
-        </button>
+            <span>Download sebagai Video (MP4)</span>
+          </button>
+        </div>
       </div>
 
       <!-- Loading -->
@@ -307,7 +385,7 @@
         </div>
       </div>
 
-      <!-- Success — auto reset setelah download -->
+      <!-- Success Notification -->
       <div id="state-success" class="hidden mt-4 animate-up">
         <div class="flex items-start gap-3 bg-panel border border-emerald-500/30 rounded-xl px-4 py-3.5 mb-3">
           <div class="w-7 h-7 rounded-full bg-emerald-500/15 flex items-center justify-center shrink-0 mt-0.5">
@@ -319,21 +397,20 @@
           <div class="min-w-0">
             <p class="text-[13px] font-semibold text-emerald-400">Download berhasil!</p>
             <p id="success-filename" class="text-[12px] text-muted mt-0.5 truncate"></p>
-            <p class="text-[11px] text-muted mt-1">Cek folder <span class="text-white font-medium">Downloads</span> di
-              PC kamu.</p>
+            <p class="text-[11px] text-muted mt-1">Cek folder <span class="text-white font-medium">Downloads</span> di perangkat kamu.</p>
           </div>
         </div>
 
         <div class="bg-panel/50 border border-line rounded-xl px-4 py-4 text-center">
-          <p class="text-[13px] text-white font-semibold mb-3">Mau download video lain?</p>
+          <p class="text-[13px] text-white font-semibold mb-3">Mau download yang lain?</p>
           <div class="flex items-center gap-2">
             <button type="button" id="back-btn"
               class="flex-1 py-2.5 rounded-lg font-semibold text-[13px] bg-white text-black hover:bg-zinc-200 transition-colors">
-              Ya, Download Lagi
+              Download Lagi
             </button>
             <button type="button" id="stay-btn"
               class="flex-1 py-2.5 rounded-lg font-semibold text-[13px] border border-line text-white hover:bg-line transition-colors">
-              Nanti Saja
+              Tutup
             </button>
           </div>
         </div>
@@ -341,8 +418,6 @@
 
     </div>
   </main>
-
-
 
   <!-- Steps -->
   <section id="how-it-works" class="relative z-10 border-t border-line/60 px-6 py-10">
@@ -352,7 +427,7 @@
           class="w-8 h-8 rounded-lg bg-panel border border-line flex items-center justify-center mx-auto mb-3 text-[13px] font-bold text-sub">
           1</div>
         <p class="text-[13px] font-semibold text-white mb-1">Copy Link</p>
-        <p class="text-[12px] text-muted leading-relaxed">Open TikTok, tap Share &rarr; Copy Link</p>
+        <p class="text-[12px] text-muted leading-relaxed">Salin tautan video atau slider TikTok</p>
       </div>
       <div>
         <div
@@ -366,7 +441,7 @@
           class="w-8 h-8 rounded-lg bg-panel border border-line flex items-center justify-center mx-auto mb-3 text-[13px] font-bold text-sub">
           3</div>
         <p class="text-[13px] font-semibold text-white mb-1">Download</p>
-        <p class="text-[12px] text-muted leading-relaxed">Video tersimpan tanpa watermark</p>
+        <p class="text-[12px] text-muted leading-relaxed">Unduh video atau foto slider tanpa watermark</p>
       </div>
     </div>
   </section>
@@ -378,32 +453,26 @@
       <div class="space-y-4">
         <div class="bg-panel border border-line rounded-xl p-5">
           <h3 class="text-[15px] font-semibold text-white mb-2">Apakah TikSave gratis?</h3>
-          <p class="text-[13px] text-sub leading-relaxed">Ya, TikSave 100% gratis. Tidak ada biaya tersembunyi dan tidak
-            perlu mendaftar akun.</p>
+          <p class="text-[13px] text-sub leading-relaxed">Ya, TikSave 100% gratis. Tidak ada biaya tersembunyi dan tidak perlu mendaftar akun.</p>
+        </div>
+        <div class="bg-panel border border-line rounded-xl p-5">
+          <h3 class="text-[15px] font-semibold text-white mb-2">Bagaimana cara download slider / photo slide TikTok?</h3>
+          <p class="text-[13px] text-sub leading-relaxed">Cukup tempel tautan slider. TikSave akan otomatis mendeteksi bahwa itu adalah slider foto, menampilkan navigasi slide, dan menyediakan opsi download semua foto (.ZIP) atau foto satu per satu tanpa otomatis mendownload video.</p>
         </div>
         <div class="bg-panel border border-line rounded-xl p-5">
           <h3 class="text-[15px] font-semibold text-white mb-2">Di mana hasil download disimpan?</h3>
-          <p class="text-[13px] text-sub leading-relaxed">Video otomatis masuk ke folder <strong>Downloads</strong> di
-            komputer atau galeri di HP kamu.</p>
+          <p class="text-[13px] text-sub leading-relaxed">File otomatis masuk ke folder <strong>Downloads</strong> di komputer atau galeri di HP kamu.</p>
         </div>
         <div class="bg-panel border border-line rounded-xl p-5">
-          <h3 class="text-[15px] font-semibold text-white mb-2">Apakah ada watermark di videonya?</h3>
-          <p class="text-[13px] text-sub leading-relaxed">Tidak. Semua video yang didownload lewat TikSave bersih tanpa
-            watermark TikTok.</p>
-        </div>
-        <div class="bg-panel border border-line rounded-xl p-5">
-          <h3 class="text-[15px] font-semibold text-white mb-2">Kenapa videonya gagal didownload?</h3>
-          <p class="text-[13px] text-sub leading-relaxed">Biasanya karena video di-set private, dihapus pemiliknya, atau
-            server sedang sibuk. Pastikan URL benar dan videonya publik.</p>
+          <h3 class="text-[15px] font-semibold text-white mb-2">Apakah ada watermark di hasilnya?</h3>
+          <p class="text-[13px] text-sub leading-relaxed">Tidak. Semua video dan foto yang didownload lewat TikSave bersih tanpa watermark TikTok.</p>
         </div>
       </div>
     </div>
   </section>
 
-
-
   <footer class="relative z-10 border-t border-line/60 px-6 py-5 flex items-center justify-between">
-    <span class="text-[12px] text-muted">&#169; 2025 TikSave</span>
+    <span class="text-[12px] text-muted">&#169; 2026 TikSave</span>
     <span class="text-[12px] text-muted">For personal use only</span>
   </footer>
 
@@ -420,8 +489,27 @@
     const previewTitle = document.getElementById('preview-title');
     const previewUploader = document.getElementById('preview-uploader');
     const previewDur = document.getElementById('preview-dur');
+    
+    const sliderOverlay = document.getElementById('slider-overlay');
+    const sliderBadgeText = document.getElementById('slider-badge-text');
+    const sliderCounter = document.getElementById('slider-counter');
+    const sliderPrevBtn = document.getElementById('slider-prev-btn');
+    const sliderNextBtn = document.getElementById('slider-next-btn');
+    const sliderThumbsContainer = document.getElementById('slider-thumbs-container');
+    const sliderThumbs = document.getElementById('slider-thumbs');
+
+    const videoActions = document.getElementById('video-actions');
     const confirmDlBtn = document.getElementById('confirm-dl-btn');
     const confirmDlLabel = document.getElementById('confirm-dl-label');
+
+    const sliderActions = document.getElementById('slider-actions');
+    const dlZipBtn = document.getElementById('dl-zip-btn');
+    const dlZipLabel = document.getElementById('dl-zip-label');
+    const dlCurrentSlideBtn = document.getElementById('dl-current-slide-btn');
+    const dlCurrentText = document.getElementById('dl-current-text');
+    const dlAudioBtn = document.getElementById('dl-audio-btn');
+    const dlSlideshowVideoBtn = document.getElementById('dl-slideshow-video-btn');
+
     const loadingLabel = document.getElementById('loading-label');
     const errorText = document.getElementById('error-text');
     const stLoading = document.getElementById('state-loading');
@@ -431,6 +519,8 @@
     const stayBtn = document.getElementById('stay-btn');
 
     let currentUrl = '';
+    let currentData = null;
+    let currentSlideIndex = 0;
 
     const DL_ICON = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`;
     const SPIN_ICON = `<svg class="animate-spin" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>`;
@@ -458,7 +548,7 @@
       return Math.floor(secs / 60) + ':' + String(Math.round(secs % 60)).padStart(2, '0');
     }
 
-    // Step 1: fetch info dulu, tampilkan preview
+    // Step 1: Fetch metadata and inspect if it's a slider or video
     downloadBtn.addEventListener('click', async () => {
       const url = urlInput.value.trim();
       if (!url) { showError('Paste a TikTok URL first.'); return; }
@@ -467,9 +557,9 @@
       hideStatus();
       previewCard.classList.add('hidden');
       downloadBtn.disabled = true;
-      dlLabel.innerHTML = SPIN_ICON + ' Fetching preview…';
+      dlLabel.innerHTML = SPIN_ICON + ' Processing URL…';
       stLoading.classList.remove('hidden');
-      loadingLabel.textContent = 'Mengambil info video…';
+      loadingLabel.textContent = 'Mendeteksi konten TikTok…';
 
       try {
         const res = await fetch(`${API}/info?url=${encodeURIComponent(url)}`);
@@ -482,59 +572,147 @@
       } catch (e) {
         stLoading.classList.add('hidden');
         downloadBtn.disabled = false;
-        dlLabel.innerHTML = DL_ICON + ' Download Video';
-        showError(e.message || 'Gagal mengambil preview.');
+        dlLabel.innerHTML = DL_ICON + ' Get Download Links';
+        showError(e.message || 'Gagal mengambil informasi link.');
       }
     });
 
     function renderPreview(data, url) {
       currentUrl = url;
+      currentData = data;
+      currentSlideIndex = 0;
 
-      thumbPh.classList.add('hidden');
-      if (data.thumbnail) {
-        previewThumb.style.display = 'block';
-        previewThumb.src = `${API}/proxy-image?url=${encodeURIComponent(data.thumbnail)}`;
-      } else {
-        previewThumb.style.display = 'none';
-        thumbPh.classList.remove('hidden');
-      }
-
-      const dur = formatDur(data.duration);
-      previewDur.textContent = dur;
-      previewDur.classList.toggle('hidden', !dur);
-
-      previewTitle.textContent = data.title || 'TikTok Video';
+      previewTitle.textContent = data.title || 'TikTok Post';
       previewUploader.textContent = data.uploader ? '@' + data.uploader : '';
 
-      // Kunci input, sembunyikan paste button & tombol download pertama
       urlInput.setAttribute('readonly', '');
       pasteBtn.classList.add('hidden');
       downloadBtn.classList.add('hidden');
 
-      confirmDlLabel.innerHTML = DL_ICON + ' Download';
-      confirmDlBtn.disabled = false;
+      const isSlider = Boolean(data.is_slider || (data.images && data.images.length > 0));
+
+      if (isSlider) {
+        // Slider mode: never auto-download video
+        sliderOverlay.classList.remove('hidden');
+        previewDur.classList.add('hidden');
+        videoActions.classList.add('hidden');
+        sliderActions.classList.remove('hidden');
+
+        const images = data.images && data.images.length > 0 ? data.images : (data.thumbnail ? [data.thumbnail] : []);
+        data.images = images;
+
+        sliderBadgeText.textContent = `Slider · ${images.length} Foto`;
+
+        // Render mini thumbnails
+        sliderThumbs.innerHTML = '';
+        if (images.length > 1) {
+          sliderThumbsContainer.classList.remove('hidden');
+          images.forEach((imgUrl, idx) => {
+            const thumbBtn = document.createElement('button');
+            thumbBtn.type = 'button';
+            thumbBtn.className = `w-11 h-11 rounded-lg overflow-hidden border transition-all shrink-0 ${idx === 0 ? 'border-red-tk ring-2 ring-red-tk/40' : 'border-line opacity-60 hover:opacity-100'}`;
+            thumbBtn.innerHTML = `<img src="${API}/proxy-image?url=${encodeURIComponent(imgUrl)}" class="w-full h-full object-cover" referrerpolicy="no-referrer" />`;
+            thumbBtn.addEventListener('click', () => showSlide(idx));
+            sliderThumbs.appendChild(thumbBtn);
+          });
+        } else {
+          sliderThumbsContainer.classList.add('hidden');
+        }
+
+        // Toggle optional secondary buttons
+        if (data.audio_url) {
+          dlAudioBtn.classList.remove('hidden');
+        } else {
+          dlAudioBtn.classList.add('hidden');
+        }
+
+        if (data.has_video) {
+          dlSlideshowVideoBtn.classList.remove('hidden');
+        } else {
+          dlSlideshowVideoBtn.classList.add('hidden');
+        }
+
+        showSlide(0);
+
+      } else {
+        // Standard video mode
+        sliderOverlay.classList.add('hidden');
+        sliderThumbsContainer.classList.add('hidden');
+        sliderActions.classList.add('hidden');
+        videoActions.classList.remove('hidden');
+
+        thumbPh.classList.add('hidden');
+        if (data.thumbnail) {
+          previewThumb.style.display = 'block';
+          previewThumb.src = `${API}/proxy-image?url=${encodeURIComponent(data.thumbnail)}`;
+        } else {
+          previewThumb.style.display = 'none';
+          thumbPh.classList.remove('hidden');
+        }
+
+        const dur = formatDur(data.duration);
+        previewDur.textContent = dur;
+        previewDur.classList.toggle('hidden', !dur);
+
+        confirmDlBtn.disabled = false;
+      }
+
       previewCard.classList.remove('hidden');
     }
 
-    // Step 2: download file
-    confirmDlBtn.addEventListener('click', async () => {
+    function showSlide(index) {
+      if (!currentData || !currentData.images || currentData.images.length === 0) return;
+      
+      const count = currentData.images.length;
+      currentSlideIndex = (index + count) % count;
+      const targetUrl = currentData.images[currentSlideIndex];
+
+      thumbPh.classList.add('hidden');
+      previewThumb.style.display = 'block';
+      previewThumb.src = `${API}/proxy-image?url=${encodeURIComponent(targetUrl)}`;
+      sliderCounter.textContent = `${currentSlideIndex + 1} / ${count}`;
+
+      if (dlCurrentText) {
+        dlCurrentText.textContent = count > 1 ? `Foto ke-${currentSlideIndex + 1}` : 'Download Foto';
+      }
+
+      // Update thumbnail borders
+      const thumbBtns = sliderThumbs.querySelectorAll('button');
+      thumbBtns.forEach((btn, idx) => {
+        if (idx === currentSlideIndex) {
+          btn.className = 'w-11 h-11 rounded-lg overflow-hidden border border-red-tk ring-2 ring-red-tk/40 shrink-0 opacity-100';
+          btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        } else {
+          btn.className = 'w-11 h-11 rounded-lg overflow-hidden border border-line opacity-60 hover:opacity-100 shrink-0';
+        }
+      });
+    }
+
+    sliderPrevBtn.addEventListener('click', () => showSlide(currentSlideIndex - 1));
+    sliderNextBtn.addEventListener('click', () => showSlide(currentSlideIndex + 1));
+
+    // Universal download helper
+    async function triggerDownload(endpointUrl, defaultFname, buttonEl) {
       hideStatus();
-      confirmDlBtn.disabled = true;
-      confirmDlLabel.innerHTML = SPIN_ICON + ' Downloading…';
+      let prevHtml = '';
+      if (buttonEl) {
+        prevHtml = buttonEl.innerHTML;
+        buttonEl.disabled = true;
+        buttonEl.innerHTML = `<span class="relative z-10 flex items-center justify-center gap-2">${SPIN_ICON}<span>Mengunduh…</span></span>`;
+      }
       stLoading.classList.remove('hidden');
-      loadingLabel.textContent = 'Fetching video…';
+      loadingLabel.textContent = 'Menyiapkan file unduhan…';
 
       try {
-        const res = await fetch(`${API}/download?url=${encodeURIComponent(currentUrl)}`);
+        const res = await fetch(endpointUrl);
         if (!res.ok) {
           const d = await res.json().catch(() => ({}));
           throw new Error(d.detail || 'Server error ' + res.status);
         }
 
         loadingLabel.textContent = 'Menyimpan file…';
-
         const disp = res.headers.get('Content-Disposition') || '';
-        let fname = 'video.mp4';
+        let fname = defaultFname || 'download';
         const mUtf8 = disp.match(/filename\*=UTF-8''([^;]+)/i);
         const mPlain = disp.match(/filename="?([^";]+)"?/i);
         if (mUtf8) fname = decodeURIComponent(mUtf8[1].trim());
@@ -551,16 +729,63 @@
         stLoading.classList.add('hidden');
         document.getElementById('success-filename').textContent = fname;
         stSuccess.classList.remove('hidden');
-
-        confirmDlLabel.innerHTML = DL_ICON + ' Download';
-        confirmDlBtn.disabled = false;
-
       } catch (e) {
         stLoading.classList.add('hidden');
-        confirmDlBtn.disabled = false;
-        confirmDlLabel.innerHTML = DL_ICON + ' Download';
-        showError(e.message || 'Something went wrong, please try again.');
+        showError(e.message || 'Gagal mengunduh file.');
+      } finally {
+        if (buttonEl) {
+          buttonEl.disabled = false;
+          buttonEl.innerHTML = prevHtml;
+        }
       }
+    }
+
+    // Video download button action
+    confirmDlBtn.addEventListener('click', () => {
+      triggerDownload(
+        `${API}/download?url=${encodeURIComponent(currentUrl)}`,
+        'video.mp4',
+        confirmDlBtn
+      );
+    });
+
+    // Slider: Download All as ZIP
+    dlZipBtn.addEventListener('click', () => {
+      triggerDownload(
+        `${API}/download-zip?url=${encodeURIComponent(currentUrl)}`,
+        'tiktok_slides.zip',
+        dlZipBtn
+      );
+    });
+
+    // Slider: Download Current Slide Image
+    dlCurrentSlideBtn.addEventListener('click', () => {
+      if (!currentData || !currentData.images || !currentData.images[currentSlideIndex]) return;
+      const targetImg = currentData.images[currentSlideIndex];
+      const filename = `slide_${currentSlideIndex + 1}.jpg`;
+      triggerDownload(
+        `${API}/download-image?url=${encodeURIComponent(targetImg)}&filename=${encodeURIComponent(filename)}`,
+        filename,
+        dlCurrentSlideBtn
+      );
+    });
+
+    // Slider: Download Audio
+    dlAudioBtn.addEventListener('click', () => {
+      triggerDownload(
+        `${API}/download-audio?url=${encodeURIComponent(currentUrl)}`,
+        'audio.mp3',
+        dlAudioBtn
+      );
+    });
+
+    // Slider: Download slideshow video
+    dlSlideshowVideoBtn.addEventListener('click', () => {
+      triggerDownload(
+        `${API}/download?url=${encodeURIComponent(currentUrl)}`,
+        'slideshow.mp4',
+        dlSlideshowVideoBtn
+      );
     });
 
     backBtn.addEventListener('click', () => {
@@ -568,10 +793,11 @@
       urlInput.removeAttribute('readonly');
       pasteBtn.classList.remove('hidden');
       downloadBtn.classList.remove('hidden');
-      dlLabel.innerHTML = DL_ICON + ' Download Video';
+      dlLabel.innerHTML = DL_ICON + ' Get Download Links';
       downloadBtn.disabled = false;
       previewCard.classList.add('hidden');
       currentUrl = '';
+      currentData = null;
       hideStatus();
     });
 
